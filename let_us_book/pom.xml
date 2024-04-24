@@ -4,10 +4,17 @@
   <artifactId>let_us_book</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
-	  <dependency>
+	<dependency>
 	    <groupId>org.openjfx</groupId>
 	    <artifactId>javafx-swing</artifactId>
 	    <version>22.0.1</version>
-	  </dependency>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+	<dependency>
+	    <groupId>com.microsoft.sqlserver</groupId>
+	    <artifactId>mssql-jdbc</artifactId>
+	    <version>12.6.0.jre8</version>
+	</dependency>
+
   </dependencies>
 </project>
