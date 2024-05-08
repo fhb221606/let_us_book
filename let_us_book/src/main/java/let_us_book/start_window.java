@@ -45,6 +45,8 @@ public class start_window extends JFrame {
 		JLabel lblNewLabel = new JLabel("Hello World");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel.setBounds(25, 27, 167, 51);
+		
+		lblNewLabel.setText("Hello World 2");
 		contentPane.add(lblNewLabel);
 	}
 }
