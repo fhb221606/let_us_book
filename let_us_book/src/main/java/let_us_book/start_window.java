@@ -49,17 +49,32 @@ public class start_window extends JFrame {
 				+ "GROUP BY Category\r\n"
 				+ "ORDER BY Category DESC;");
 		
-		total_master_table = p.getTotalDataFromDB("SELECT \r\n"
+		for (int i = 0; i < content_master_table.length; i++) {
+	        for (int j = 0; j < content_master_table[i].length; j++) {
+	            System.out.print(content_master_table[i][j] + " ");
+	        }
+	        System.out.println(); 
+	    }
+		
+		
+		total_master_table = p.getDataFromDB("SELECT \r\n"
 				+ "  COUNT(*) AS Total_Hotels,\r\n"
 				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
 				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
 				+ "FROM Hotel");
 		
+		for (int i = 0; i < total_master_table.length; i++) {
+	        for (int j = 0; j < total_master_table[i].length; j++) {
+	            System.out.print(total_master_table[i][j] + " ");
+	        }
+	        System.out.println(); 
+	    }
+		
 		
 		//test can be copied
 		//===================
-		new_data_content = p.getDataFromDBSimple("Hotel", "SELECT * \r\n"
-				+ "FROM Hotel;");
+		new_data_content = p.getDataFromDB("SELECT * \r\n"
+				+ "FROM Hotel");
 		
 		
 		System.out.println("-----------------------------------------");
@@ -71,22 +86,6 @@ public class start_window extends JFrame {
 	    }
 		System.out.println("-----------------------------------------");
 		//===================
-		
-		
-		for (int i = 0; i < content_master_table.length; i++) {
-	        for (int j = 0; j < content_master_table[i].length; j++) {
-	            System.out.print(content_master_table[i][j] + " ");
-	        }
-	        System.out.println(); 
-	    }
-		
-		for (int i = 0; i < total_master_table.length; i++) {
-	        for (int j = 0; j < total_master_table[i].length; j++) {
-	            System.out.print(total_master_table[i][j] + " ");
-	        }
-	        System.out.println(); 
-	    }
-		
 		
 		//-----------------------------------------------------------------------------
 		

@@ -10,40 +10,6 @@ public class Parser {
 	
 	public String connectionUrl = "jdbc:sqlserver://185.119.119.126;databaseName=SWP_2024_let_us_book;user=let_us_book;password=let_us_book;encrypt=false;trustServerCretificate=true";
 	
-	public String[][] getDataFromDBSimple(String table, String command) {
-		try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
-			
-			ResultSet countRs = stmt.executeQuery("SELECT COUNT(*) AS 'rowcount' FROM " + table);
-            countRs.next();
-            int rowCount = countRs.getInt("rowcount");
-            countRs.close();
-
-            // Execute the provided SQL command
-            ResultSet rs = stmt.executeQuery(command);
-
-            // Obtain the ResultSet metadata to determine the number of columns
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-            // Create a 2D String array to hold the data
-            String[][] data = new String[rowCount][columnCount];
-
-            // Iterate through the ResultSet and populate the array
-            int rowIndex = 0;
-            while (rs.next()) {
-                for (int colIndex = 1; colIndex <= columnCount; colIndex++) {
-                    data[rowIndex][colIndex - 1] = rs.getString(colIndex);
-                }
-                rowIndex++;
-            }
-            return data;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
-		return null;
-	}
-	
 	public String[][] getDataFromDB(String command) {
 		try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
 			
@@ -57,6 +23,8 @@ public class Parser {
 	        if (index != -1) {
 	            // Get the substring from the start of the original string to the index of "ORDER BY"
 	            sub_command = command.substring(0, index);
+	        } else {
+	        	sub_command = command;
 	        }
 	        
 			ResultSet countRs = stmt.executeQuery("SELECT COUNT(*) AS 'rowcount' FROM (" + sub_command + ") as Sub_Select;");
@@ -90,37 +58,4 @@ public class Parser {
 		return null;
 	}
 	
-	//Used because one line results crash
-	public String[][] getTotalDataFromDB(String command) {
-		String connectionUrl = "jdbc:sqlserver://185.119.119.126;databaseName=SWP_2024_let_us_book;user=let_us_book;password=let_us_book;encrypt=false;trustServerCretificate=true";
-		
-		try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
-			
-			int rowCount = 1;
-
-            // Execute the provided SQL command
-            ResultSet rs = stmt.executeQuery(command);
-
-            // Obtain the ResultSet metadata to determine the number of columns
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-            // Create a 2D String array to hold the data
-            String[][] data = new String[rowCount][columnCount];
-
-            // Iterate through the ResultSet and populate the array
-            int rowIndex = 0;
-            while (rs.next()) {
-                for (int colIndex = 1; colIndex <= columnCount; colIndex++) {
-                    data[rowIndex][colIndex - 1] = rs.getString(colIndex);
-                }
-                rowIndex++;
-            }
-            return data;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
-		return null;
-	}
 }
