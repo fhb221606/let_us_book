@@ -90,6 +90,8 @@ public class start_window extends JFrame {
 		master_table.getColumnModel().getColumn(3).setPreferredWidth(100);
 		master_table.setBounds(25, 89, 887, 180);
 		
+		//test manipulate
+		master_table.setValueAt(1000, 2, 2);
 		
 		contentPane.add(master_table);
 	}
