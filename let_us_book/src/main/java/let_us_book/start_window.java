@@ -24,22 +24,53 @@ public class start_window extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable master_table;
+	
+	public static String[][] content_master_table;
+	public static String[][] total_master_table;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
+		
+		//-----------------------------------------------------------------------------
 		Parser p = new Parser();
 		
-		String[][] result = p.getDataFromDB("Mitarbeiter", "SELECT * FROM Mitarbeiter");
+		content_master_table = p.getDataFromDB(
+				"SELECT \r\n"
+				+ "  Category,\r\n"
+				+ "  COUNT(*) AS Establishments,\r\n"
+				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
+				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
+				+ "FROM Hotel\r\n"
+				+ "WHERE Category IS NOT NULL\r\n"
+				+ "GROUP BY Category\r\n"
+				+ "ORDER BY Category DESC;");
 		
-		for (int i = 0; i < result.length; i++) {
-	        for (int j = 0; j < result[i].length; j++) {
-	            System.out.print(result[i][j] + " ");
+		total_master_table = p.getTotalDataFromDB("SELECT \r\n"
+				+ "  COUNT(*) AS Total_Hotels,\r\n"
+				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
+				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
+				+ "FROM Hotel");
+		
+		
+		for (int i = 0; i < content_master_table.length; i++) {
+	        for (int j = 0; j < content_master_table[i].length; j++) {
+	            System.out.print(content_master_table[i][j] + " ");
 	        }
 	        System.out.println(); 
 	    }
+		
+		for (int i = 0; i < total_master_table.length; i++) {
+	        for (int j = 0; j < total_master_table[i].length; j++) {
+	            System.out.print(total_master_table[i][j] + " ");
+	        }
+	        System.out.println(); 
+	    }
+		
+		
+		//-----------------------------------------------------------------------------
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -88,7 +119,8 @@ public class start_window extends JFrame {
 				{"*****", null, null, null},
 				{"****", null, null, null},
 				{"***", null, null, null},
-				{"** & *", null, null, null},
+				{"**", null, null, null},
+				{"*", null, null, null},
 				{"Total", null, null, null},
 			},
 			new String[] {
@@ -106,10 +138,24 @@ public class start_window extends JFrame {
 		master_table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		master_table.getColumnModel().getColumn(2).setPreferredWidth(100);
 		master_table.getColumnModel().getColumn(3).setPreferredWidth(100);
-		master_table.setBounds(25, 89, 887, 180);
+		master_table.setBounds(25, 89, 888, 210);
 		
-		//test manipulate
-		master_table.setValueAt(1000, 2, 2);
+		//-----------------------------------------------------------------------------
+		
+		//Manipulate data in table
+		for (int i = 0; i < content_master_table.length; i++) {
+	        for (int j = 0; j < content_master_table[i].length; j++) {
+	    		master_table.setValueAt(content_master_table[i][j], i+1, j);
+	        }
+	    }
+		
+		for (int i = 0; i < total_master_table.length; i++) {
+	        for (int j = 0; j < total_master_table[i].length; j++) {
+	    		master_table.setValueAt(total_master_table[i][j], content_master_table.length + 1, j + 1);
+	        }
+	    }
+		
+		//-----------------------------------------------------------------------------
 		
 		contentPane.add(master_table);
 	}
