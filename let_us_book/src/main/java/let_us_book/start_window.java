@@ -49,12 +49,12 @@ public class start_window extends JFrame {
 				+ "GROUP BY Category\r\n"
 				+ "ORDER BY Category DESC;");
 		
-		for (int i = 0; i < content_master_table.length; i++) {
+		/*for (int i = 0; i < content_master_table.length; i++) {
 	        for (int j = 0; j < content_master_table[i].length; j++) {
 	            System.out.print(content_master_table[i][j] + " ");
 	        }
 	        System.out.println(); 
-	    }
+	    }*/
 		
 		
 		total_master_table = p.getDataFromDB("SELECT \r\n"
@@ -63,12 +63,12 @@ public class start_window extends JFrame {
 				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
 				+ "FROM Hotel");
 		
-		for (int i = 0; i < total_master_table.length; i++) {
+		/*for (int i = 0; i < total_master_table.length; i++) {
 	        for (int j = 0; j < total_master_table[i].length; j++) {
 	            System.out.print(total_master_table[i][j] + " ");
 	        }
 	        System.out.println(); 
-	    }
+	    }*/
 		
 		
 		//test can be copied
