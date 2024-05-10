@@ -8,6 +8,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Component;
@@ -24,6 +29,18 @@ public class start_window extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		Parser p = new Parser();
+		
+		String[][] result = p.getDataFromDB("Mitarbeiter", "SELECT * FROM Mitarbeiter");
+		
+		for (int i = 0; i < result.length; i++) {
+	        for (int j = 0; j < result[i].length; j++) {
+	            System.out.print(result[i][j] + " ");
+	        }
+	        System.out.println(); 
+	    }
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,6 +52,7 @@ public class start_window extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
