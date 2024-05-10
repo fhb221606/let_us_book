@@ -41,6 +41,7 @@ INSERT INTO Hotel (Name, Category, Rooms, Occupied_rooms, Beds, Occupied_beds) V
 ('Highland Lodge', '***', 70, 50, 140, 100),
 ('Urban Hotel', '*', 60, 45, 120, 90);
 
+
 SELECT COUNT(*) AS 'rowcount' FROM (
 SELECT 
   Category,
@@ -52,13 +53,15 @@ WHERE Category IS NOT NULL
 GROUP BY Category
 ) as Sub_Select;
 
+
+SELECT COUNT(*) AS 'rowcount' FROM (
 SELECT 
   COUNT(*) AS Total_Hotels,
   SUM(Rooms) - SUM(Occupied_rooms) as Rooms,
   SUM(Beds) - SUM(Occupied_beds) as Beds
-FROM Hotel;
-
-SELECT COUNT(*) AS 'rowcount' FROM (
-SELECT COUNT(*) AS Total_Hotels, SUM(Rooms) - SUM(Occupied_rooms) as Rooms, SUM(Beds) - SUM(Occupied_beds) as Beds
 FROM Hotel
 ) as Sub_Select;
+
+
+SELECT * 
+FROM Hotel;

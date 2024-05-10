@@ -27,6 +27,7 @@ public class start_window extends JFrame {
 	
 	public static String[][] content_master_table;
 	public static String[][] total_master_table;
+	public static String[][] new_data_content;
 
 	/**
 	 * Launch the application.
@@ -53,6 +54,23 @@ public class start_window extends JFrame {
 				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
 				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
 				+ "FROM Hotel");
+		
+		
+		//test can be copied
+		//===================
+		new_data_content = p.getDataFromDBSimple("Hotel", "SELECT * \r\n"
+				+ "FROM Hotel;");
+		
+		
+		System.out.println("-----------------------------------------");
+		for (int i = 0; i < new_data_content.length; i++) {
+	        for (int j = 0; j < new_data_content[i].length; j++) {
+	            System.out.print(new_data_content[i][j] + " ");
+	        }
+	        System.out.println(); 
+	    }
+		System.out.println("-----------------------------------------");
+		//===================
 		
 		
 		for (int i = 0; i < content_master_table.length; i++) {
