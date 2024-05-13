@@ -23,6 +23,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class start_window extends JFrame {
 
@@ -86,6 +88,30 @@ public class start_window extends JFrame {
 		masterSummaryPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(masterSummaryPanel);
 		masterSummaryPanel.setVisible(true);
+		
+		JPanel masterListPanel = new master_list_panel();
+		masterListPanel.setBounds(10, 33, 928, 519);
+		contentPanel.add(masterListPanel);
+		masterListPanel.setVisible(false);
+		
+		
+		masterSummaryMenuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				System.out.println("Summary click");
+			}
+		});
+		
+		masterListMenuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				masterSummaryPanel.setVisible(false);
+				masterListPanel.setVisible(true);
+				System.out.println("List click");
+			}
+		});
+		
 		
 		contentPane.add(contentPanel);
 		
