@@ -1,6 +1,10 @@
 package let_us_book;
 
 import java.awt.EventQueue;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,6 +34,7 @@ public class start_window extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private CardLayout cardLayout = new CardLayout(0, 0);
 	
 	public static String[][] content_master_table;
 	public static String[][] total_master_table;
@@ -80,42 +85,36 @@ public class start_window extends JFrame {
 		JMenuItem masterListMenuItem = new JMenuItem("Master List");
 		masterMenu.add(masterListMenuItem);
 		
-		JPanel contentPanel = new JPanel();
+		JPanel contentPanel = new JPanel(cardLayout);
 		contentPanel.setBounds(10, 33, 928, 519);
-		contentPanel.setLayout(new GridLayout(0, 1, 0, 0));
+		contentPane.add(contentPanel);
 		
 		JPanel masterSummaryPanel = new master_summary_panel();
 		masterSummaryPanel.setBounds(10, 33, 928, 519);
-		contentPanel.add(masterSummaryPanel);
-		masterSummaryPanel.setVisible(true);
+		contentPanel.add(masterSummaryPanel, "Master Summary");
 		
 		JPanel masterListPanel = new master_list_panel();
 		masterListPanel.setBounds(10, 33, 928, 519);
-		contentPanel.add(masterListPanel);
-		masterListPanel.setVisible(false);
+		contentPanel.add(masterListPanel, "Master List");
 		
 		
-		masterSummaryMenuItem.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				System.out.println("Summary click");
-			}
-		});
 		
-		masterListMenuItem.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				masterSummaryPanel.setVisible(false);
-				masterListPanel.setVisible(true);
-				System.out.println("List click");
-			}
-		});
+		masterSummaryMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, "Master Summary");
+            }
+        });
+
+        masterListMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, "Master List");
+            }
+        });
 		
 		
-		contentPane.add(contentPanel);
-		
-		
+        cardLayout.show(contentPanel, "Master Summary");
 		
 	}
 }
