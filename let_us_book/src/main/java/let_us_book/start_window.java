@@ -18,12 +18,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Component;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
 
 public class start_window extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable master_table;
 	
 	public static String[][] content_master_table;
 	public static String[][] total_master_table;
@@ -33,61 +37,6 @@ public class start_window extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		
-		//-----------------------------------------------------------------------------
-		Parser p = new Parser();
-		
-		content_master_table = p.getDataFromDB(
-				"SELECT \r\n"
-				+ "  Category,\r\n"
-				+ "  COUNT(*) AS Establishments,\r\n"
-				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
-				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
-				+ "FROM Hotel\r\n"
-				+ "WHERE Category IS NOT NULL\r\n"
-				+ "GROUP BY Category\r\n"
-				+ "ORDER BY Category DESC;");
-		
-		/*for (int i = 0; i < content_master_table.length; i++) {
-	        for (int j = 0; j < content_master_table[i].length; j++) {
-	            System.out.print(content_master_table[i][j] + " ");
-	        }
-	        System.out.println(); 
-	    }*/
-		
-		
-		total_master_table = p.getDataFromDB("SELECT \r\n"
-				+ "  COUNT(*) AS Total_Hotels,\r\n"
-				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
-				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
-				+ "FROM Hotel");
-		
-		/*for (int i = 0; i < total_master_table.length; i++) {
-	        for (int j = 0; j < total_master_table[i].length; j++) {
-	            System.out.print(total_master_table[i][j] + " ");
-	        }
-	        System.out.println(); 
-	    }*/
-		
-		
-		//test can be copied
-		//===================
-		new_data_content = p.getDataFromDB("SELECT * \r\n"
-				+ "FROM Hotel");
-		
-		
-		System.out.println("-----------------------------------------");
-		for (int i = 0; i < new_data_content.length; i++) {
-	        for (int j = 0; j < new_data_content[i].length; j++) {
-	            System.out.print(new_data_content[i][j] + " ");
-	        }
-	        System.out.println(); 
-	    }
-		System.out.println("-----------------------------------------");
-		//===================
-		
-		//-----------------------------------------------------------------------------
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -106,6 +55,7 @@ public class start_window extends JFrame {
 	 * Create the frame.
 	 */
 	public start_window() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 613);
 		contentPane = new JPanel();
@@ -115,65 +65,31 @@ public class start_window extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel masterLabel = new JLabel("Hello World");
-		masterLabel.setForeground(new Color(0, 0, 0));
-		masterLabel.setBackground(new Color(213, 0, 0));
-		masterLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		masterLabel.setBounds(25, 28, 136, 40);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 101, 22);
+		contentPane.add(menuBar);
 		
-		masterLabel.setText("Master Data");
-		contentPane.add(masterLabel);
+		JMenu masterMenu = new JMenu("Master");
+		menuBar.add(masterMenu);
 		
-		master_table = new JTable();
-		master_table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		master_table.setRowHeight(30);
-		master_table.setRowSelectionAllowed(false);
-		master_table.setFillsViewportHeight(true);
-		master_table.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		master_table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Category", "Establishments", "Rooms", "Beds"},
-				{"*****", null, null, null},
-				{"****", null, null, null},
-				{"***", null, null, null},
-				{"**", null, null, null},
-				{"*", null, null, null},
-				{"Total", null, null, null},
-			},
-			new String[] {
-				"Category", "Establishments", "Rooms", "Beds"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		master_table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		master_table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		master_table.getColumnModel().getColumn(2).setPreferredWidth(100);
-		master_table.getColumnModel().getColumn(3).setPreferredWidth(100);
-		master_table.setBounds(25, 89, 888, 210);
+		JMenuItem masterSummaryMenuItem = new JMenuItem("Master Summary");
+		masterMenu.add(masterSummaryMenuItem);
 		
-		//-----------------------------------------------------------------------------
+		JMenuItem masterListMenuItem = new JMenuItem("Master List");
+		masterMenu.add(masterListMenuItem);
 		
-		//Manipulate data in table
-		for (int i = 0; i < content_master_table.length; i++) {
-	        for (int j = 0; j < content_master_table[i].length; j++) {
-	    		master_table.setValueAt(content_master_table[i][j], i+1, j);
-	        }
-	    }
+		JPanel contentPanel = new JPanel();
+		contentPanel.setBounds(10, 33, 928, 519);
+		contentPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		for (int i = 0; i < total_master_table.length; i++) {
-	        for (int j = 0; j < total_master_table[i].length; j++) {
-	    		master_table.setValueAt(total_master_table[i][j], content_master_table.length + 1, j + 1);
-	        }
-	    }
+		JPanel masterSummaryPanel = new master_summary_panel();
+		masterSummaryPanel.setBounds(10, 33, 928, 519);
+		contentPanel.add(masterSummaryPanel);
+		masterSummaryPanel.setVisible(true);
 		
-		//-----------------------------------------------------------------------------
+		contentPane.add(contentPanel);
 		
-		contentPane.add(master_table);
+		
+		
 	}
 }
