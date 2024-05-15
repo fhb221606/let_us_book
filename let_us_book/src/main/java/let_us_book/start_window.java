@@ -89,11 +89,11 @@ public class start_window extends JFrame {
 		contentPanel.setBounds(10, 33, 928, 519);
 		contentPane.add(contentPanel);
 		
-		JPanel masterSummaryPanel = new master_summary_panel();
+		JScrollPane masterSummaryPanel = new master_summary_panel();
 		masterSummaryPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(masterSummaryPanel, "Master Summary");
 		
-		JPanel masterListPanel = new master_list_panel();
+		JScrollPane masterListPanel = new master_list_panel();
 		masterListPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(masterListPanel, "Master List");
 		

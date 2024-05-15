@@ -1,6 +1,6 @@
 package let_us_book;
 
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -8,7 +8,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
-public class master_summary_panel extends JPanel {
+public class master_summary_panel extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
 	private JTable masterSummaryTable;
@@ -22,15 +22,12 @@ public class master_summary_panel extends JPanel {
 	
 	
 	public master_summary_panel() {
-		
-		setLayout(null);
-		
 		JLabel masterSummaryLabel = new JLabel("Master Data Summary");
 		masterSummaryLabel.setBounds(240, 5, 225, 25);
 		masterSummaryLabel.setForeground(Color.BLACK);
 		masterSummaryLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		masterSummaryLabel.setBackground(new Color(213, 0, 0));
-		add(masterSummaryLabel);
+		
 		
 		masterSummaryTable = new JTable();
 		masterSummaryTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -38,7 +35,6 @@ public class master_summary_panel extends JPanel {
 		masterSummaryTable.setRowHeight(30);
 		masterSummaryTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Category", "Hotels", "Rooms", "Beds"},
 				{"*****", null, null, null},
 				{"****", null, null, null},
 				{"***", null, null, null},
@@ -55,7 +51,11 @@ public class master_summary_panel extends JPanel {
 		masterSummaryTable.getColumnModel().getColumn(2).setPreferredWidth(100);
 		masterSummaryTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 		masterSummaryTable.setBounds(21, 58, 658, 210);
-		add(masterSummaryTable);
+		
+		setViewportView(masterSummaryTable);
+		
+		// Additional setup for the JScrollPane if needed
+        setBounds(20, 38, 632, 175); // Adjust size as necessary
 		
 		//-----------------------------------------------------------------------------
 		
@@ -96,13 +96,13 @@ public class master_summary_panel extends JPanel {
 		//Manipulate data in table
 		for (int i = 0; i < content_master_table.length; i++) {
 	        for (int j = 0; j < content_master_table[i].length; j++) {
-	    		masterSummaryTable.setValueAt(content_master_table[i][j], i+1, j);
+	    		masterSummaryTable.setValueAt(content_master_table[i][j], i, j);
 	        }
 	    }
 		
 		for (int i = 0; i < total_master_table.length; i++) {
 	        for (int j = 0; j < total_master_table[i].length; j++) {
-	    		masterSummaryTable.setValueAt(total_master_table[i][j], content_master_table.length + 1, j + 1);
+	    		masterSummaryTable.setValueAt(total_master_table[i][j], content_master_table.length, j + 1);
 	        }
 	    }
 		
