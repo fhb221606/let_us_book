@@ -1,5 +1,6 @@
 package let_us_book;
 
+import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,9 +9,9 @@ import java.sql.Statement;
 
 public class Parser {
 	
-	public String connectionUrl = "jdbc:sqlserver://185.119.119.126;databaseName=SWP_2024_let_us_book;user=let_us_book;password=let_us_book;encrypt=false;trustServerCretificate=true";
+	public static String connectionUrl = "jdbc:sqlserver://185.119.119.126;databaseName=SWP_2024_let_us_book;user=let_us_book;password=let_us_book;encrypt=false;trustServerCretificate=true";
 	
-	public String[][] getDataFromDB(String command) {
+	public static String[][] getDataFromDB(String command) {
 		try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
 			
 			//Create substring without ORDER BY
@@ -58,4 +59,12 @@ public class Parser {
 		return null;
 	}
 	
+	public static void insertDataIntoDB(String command) {
+		try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+            // Execute the provided INSERT command
+            stmt.execute(command);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
 }
