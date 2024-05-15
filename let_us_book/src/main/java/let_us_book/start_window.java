@@ -116,5 +116,6 @@ public class start_window extends JFrame {
 		
         cardLayout.show(contentPanel, "Master Summary");
 		
+        logger.info("Setup of window was successful");
 	}
 }
