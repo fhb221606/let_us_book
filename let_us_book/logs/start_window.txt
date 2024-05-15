@@ -12,3 +12,7 @@ Mai 15, 2024 11:47:08 AM let_us_book.Log info
 INFORMATION: Start Application
 Mai 15, 2024 11:47:09 AM let_us_book.Log info
 INFORMATION: Setup of window was successful
+Mai 15, 2024 3:41:46 PM let_us_book.Log info
+INFORMATION: Start Application
+Mai 15, 2024 3:41:48 PM let_us_book.Log info
+INFORMATION: Setup of window was successful

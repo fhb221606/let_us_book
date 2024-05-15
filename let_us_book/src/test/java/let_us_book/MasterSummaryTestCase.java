@@ -20,16 +20,16 @@ class MasterSummaryTestCase {
 				"SELECT \r\n"
 				+ "  Category,\r\n"
 				+ "  COUNT(*) AS Establishments,\r\n"
-				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
-				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
+				+ "  SUM(Rooms) as Rooms,\r\n"
+				+ "  SUM(Beds) as Beds\r\n"
 				+ "FROM Hotel\r\n"
 				+ "WHERE Category IS NOT NULL\r\n"
 				+ "GROUP BY Category\r\n"
 				+ "ORDER BY Category DESC;");
 		total_master_table = p.getDataFromDB("SELECT \r\n"
 				+ "  COUNT(*) AS Total_Hotels,\r\n"
-				+ "  SUM(Rooms) - SUM(Occupied_rooms) as Rooms,\r\n"
-				+ "  SUM(Beds) - SUM(Occupied_beds) as Beds\r\n"
+				+ "  SUM(Rooms) as Rooms,\r\n"
+				+ "  SUM(Beds) as Beds\r\n"
 				+ "FROM Hotel");
 	}
 
