@@ -1,0 +1,2 @@
+Mai 15, 2024 9:16:00 AM let_us_book.Log info
+INFORMATION: This is an info message

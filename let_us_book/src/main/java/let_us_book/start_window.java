@@ -36,14 +36,14 @@ public class start_window extends JFrame {
 	private JPanel contentPane;
 	private CardLayout cardLayout = new CardLayout(0, 0);
 	
-	public static String[][] content_master_table;
-	public static String[][] total_master_table;
-	public static String[][] new_data_content;
+	protected static Log logger = new Log("start_window.txt");
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		logger.info("Start Application");
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
