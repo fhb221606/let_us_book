@@ -19,6 +19,11 @@ import java.sql.Statement;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import let_us_book.Master.master_list_panel;
+import let_us_book.Master.master_summary_panel;
+import let_us_book.Tools.Log;
+
 import java.awt.Component;
 import java.awt.Color;
 import javax.swing.border.LineBorder;

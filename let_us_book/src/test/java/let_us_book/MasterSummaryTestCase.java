@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import let_us_book.Tools.Parser;
+
 class MasterSummaryTestCase {
 	
 	public String[][] content_master_table;

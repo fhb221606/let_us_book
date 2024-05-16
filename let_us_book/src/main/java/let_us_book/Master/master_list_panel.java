@@ -1,4 +1,4 @@
-package let_us_book;
+package let_us_book.Master;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;

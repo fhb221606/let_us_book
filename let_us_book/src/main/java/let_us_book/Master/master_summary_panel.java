@@ -1,4 +1,4 @@
-package let_us_book;
+package let_us_book.Master;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -8,6 +8,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+import let_us_book.Tools.Parser;
 
 public class master_summary_panel extends JPanel {
 
