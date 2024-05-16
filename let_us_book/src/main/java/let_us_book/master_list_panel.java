@@ -2,28 +2,33 @@ package let_us_book;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class master_list_panel extends JScrollPane {
+public class master_list_panel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	private JTable masterListTable;
 
 	/**
 	 * Create the panel.
 	 */
 	public master_list_panel() {
+		setLayout(null); // Use null layout for absolute positioning
+	    setBounds(20, 20, 900, 560); // Set bounds of the JPanel
+		
 		JLabel masterListLabel = new JLabel("Master List");
-        masterListLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        masterListLabel.setBounds(297, 5, 85, 22);
+        masterListLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+        masterListLabel.setBounds(388, 7, 101, 22);
+        add(masterListLabel);
 
         // Initialize JTable with data and column names
-        table = new JTable();
-        table.setModel(new DefaultTableModel(
+        masterListTable = new JTable();
+        masterListTable.setModel(new DefaultTableModel(
             new Object[][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,19 +58,15 @@ public class master_list_panel extends JScrollPane {
                 "ID", "Name", "Category", "Details"
             }
         ));
-        table.setRowHeight(25);
-        table.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-        // Set the viewport view of the JScrollPane to the table
-        setViewportView(table);
-
-        // Set scroll bar policies
-        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-        // Additional setup for the JScrollPane if needed
-        setBounds(20, 38, 632, 175); // Adjust size as necessary
-
+        masterListTable.setRowHeight(25);
+        masterListTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBorder(null);
+        scrollPane.setBounds(10, 40, 880, 509); 
+        add(scrollPane); 
+        scrollPane.setViewportView(masterListTable);
+        
 	}
 
 }

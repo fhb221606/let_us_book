@@ -6,9 +6,10 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-public class master_summary_panel extends JScrollPane {
+public class master_summary_panel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable masterSummaryTable;
@@ -22,11 +23,15 @@ public class master_summary_panel extends JScrollPane {
 	
 	
 	public master_summary_panel() {
+		setLayout(null); // Use null layout for absolute positioning
+	    setBounds(20, 20, 900, 560); // Set bounds of the JPanel
+		
 		JLabel masterSummaryLabel = new JLabel("Master Data Summary");
-		masterSummaryLabel.setBounds(240, 5, 225, 25);
+		masterSummaryLabel.setBounds(341, 4, 225, 25);
 		masterSummaryLabel.setForeground(Color.BLACK);
 		masterSummaryLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		masterSummaryLabel.setBackground(new Color(213, 0, 0));
+		add(masterSummaryLabel);
 		
 		
 		masterSummaryTable = new JTable();
@@ -52,10 +57,12 @@ public class master_summary_panel extends JScrollPane {
 		masterSummaryTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 		masterSummaryTable.setBounds(21, 58, 658, 210);
 		
-		setViewportView(masterSummaryTable);
+        JScrollPane scrollPane = new JScrollPane(masterSummaryTable);
+        scrollPane.setBorder(null);
+        scrollPane.setBounds(10, 40, 880, 205); 
+        add(scrollPane); 
+        scrollPane.setViewportView(masterSummaryTable);
 		
-		// Additional setup for the JScrollPane if needed
-        setBounds(20, 38, 632, 175); // Adjust size as necessary
 		
 		//-----------------------------------------------------------------------------
 		

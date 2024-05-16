@@ -64,7 +64,7 @@ public class start_window extends JFrame {
 	public start_window() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 964, 613);
+		setBounds(100, 100, 955, 661);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,14 +86,14 @@ public class start_window extends JFrame {
 		masterMenu.add(masterListMenuItem);
 		
 		JPanel contentPanel = new JPanel(cardLayout);
-		contentPanel.setBounds(10, 33, 928, 519);
+		contentPanel.setBounds(10, 33, 928, 582);
 		contentPane.add(contentPanel);
 		
-		JScrollPane masterSummaryPanel = new master_summary_panel();
+		JPanel masterSummaryPanel = new master_summary_panel();
 		masterSummaryPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(masterSummaryPanel, "Master Summary");
 		
-		JScrollPane masterListPanel = new master_list_panel();
+		JPanel masterListPanel = new master_list_panel();
 		masterListPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(masterListPanel, "Master List");
 		
