@@ -8,6 +8,9 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class master_list_panel extends JPanel {
 
@@ -66,6 +69,22 @@ public class master_list_panel extends JPanel {
         scrollPane.setBounds(10, 40, 880, 509); 
         add(scrollPane); 
         scrollPane.setViewportView(masterListTable);
+        
+        JButton btnAddHtlEntry = new JButton("Add hotel entry");
+        btnAddHtlEntry.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		
+        		//Implementation to open the class 
+        		master_add_hotel_window masterAddHotelWindow = new master_add_hotel_window();
+        		
+        		masterAddHotelWindow.setVisible(true);
+        		
+        		
+        	}
+        });
+        btnAddHtlEntry.setBounds(742, 10, 148, 23);
+        add(btnAddHtlEntry);
         
 	}
 

@@ -64,3 +64,11 @@ Mai 16, 2024 11:54:19 AM let_us_book.Log info
 INFORMATION: Start Application
 Mai 16, 2024 11:54:21 AM let_us_book.Log info
 INFORMATION: Setup of window was successful
+Mai 17, 2024 1:50:51 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 17, 2024 1:50:52 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 17, 2024 1:58:44 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 17, 2024 1:58:45 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
