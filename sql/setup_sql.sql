@@ -58,6 +58,9 @@ INSERT INTO Hotel (Name, Category, Rooms, Beds, City, Street) VALUES
 
 INSERT INTO Transactional (HID, Rooms_Occupied, Beds_Occupied) VALUES
 (1, 150, 300), -- Grand Plaza
+(1, 150, 300), -- Grand Plaza
+(1, 150, 300), -- Grand Plaza
+(1, 150, 300), -- Grand Plaza
 (2, 100, 200), -- Sea View Resort
 (3, 70, 140),  -- Mountain Lodge
 (4, 30, 60),   -- Urban Hotel
@@ -99,3 +102,24 @@ FROM Hotel;
 
 SELECT * 
 FROM Transactional;
+
+SELECT t.TID, h.name
+FROM Transactional t
+JOIN Hotel h ON t.HID = h.HID;
+
+SELECT h.Category,
+    SUM(h.Rooms) AS Total_Rooms,
+    ROUND(CAST(SUM(t.Rooms_Occupied) AS FLOAT) / SUM(h.Rooms) * 100, 2) AS Percentage_Rooms_Occupied,
+    SUM(h.Beds) AS Total_Beds,
+    ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
+FROM Hotel h
+JOIN Transactional t ON h.HID = t.HID
+GROUP BY h.Category
+ORDER BY h.Category DESC; 
+
+SELECT SUM(h.Rooms) AS Total_Rooms,
+    ROUND(CAST(SUM(t.Rooms_Occupied) AS FLOAT) / SUM(h.Rooms) * 100, 2) AS Percentage_Rooms_Occupied,
+    SUM(h.Beds) AS Total_Beds,
+    ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
+FROM Hotel h
+JOIN Transactional t ON h.HID = t.HID;
