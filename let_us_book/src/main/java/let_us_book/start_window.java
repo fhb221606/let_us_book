@@ -22,9 +22,12 @@ import javax.swing.table.DefaultTableModel;
 
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_summary_panel;
+import let_us_book.Tools.Encrypter;
 import let_us_book.Tools.Log;
+import let_us_book.Tools.Parser;
 import let_us_book.Transactional.transactional_list_panel;
 import let_us_book.Transactional.transactional_summary_panel;
+import let_us_book.Usermanagement.login_window;
 
 import java.awt.Component;
 import java.awt.Color;
@@ -52,11 +55,37 @@ public class start_window extends JFrame {
 		
 		logger.info("Start Application");
 		
+		
+		/* Use this to create your account
+		
+		Parser p = new Parser();
+		Encrypter e = new Encrypter();
+		
+		String password = "test";
+		
+		try {
+			password = e.encrypt(password);
+		} catch (Exception ex) {
+			System.err.println(e);
+		}
+		
+		p.insertDataIntoDB("INSERT INTO Employee (Name, Email, Password, Permission)\r\n"
+				+ "VALUES ('USERNAME', 'EMAIL', '" + password + "', 'Senior User');");
+		*/
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					start_window frame = new start_window();
-					frame.setVisible(true);
+					frame.setVisible(false);
+					
+					login_window login = new login_window(frame);
+					
+					if (!login.isVisible()) {
+						frame.setVisible(true);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

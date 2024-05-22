@@ -8,8 +8,9 @@ DROP TABLE IF EXISTS Employee;
 CREATE TABLE Employee (
     MID INT PRIMARY KEY IDENTITY(1,1), 
     Name VARCHAR(64),               
-    Email VARCHAR(64) UNIQUE,
-    Passwort VARCHAR(64)           
+    Email VARCHAR(64),
+    Password VARCHAR(64),
+	Permission VARCHAR(64)
 );
 
 CREATE TABLE Hotel (
@@ -30,7 +31,7 @@ CREATE TABLE Transactional (
 	CONSTRAINT fk_Hotel_HID FOREIGN KEY (HID) REFERENCES Hotel(HID)
 );
 
-INSERT INTO Employee(Name, Email, Passwort) VALUES
+INSERT INTO Employee(Name, Email, Password) VALUES
 ('John Doe', 'john.doe@example.com', 'hashed_password_1'),
 ('Jane Smith', 'jane.smith@example.com', 'hashed_password_2'),
 ('Alice Johnson', 'alice.johnson@example.com', 'hashed_password_3'),
@@ -123,3 +124,5 @@ SELECT SUM(h.Rooms) AS Total_Rooms,
     ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
 FROM Hotel h
 JOIN Transactional t ON h.HID = t.HID;
+
+SELECT Name, Password, Permission FROM Employee WHERE Name = 'benni';

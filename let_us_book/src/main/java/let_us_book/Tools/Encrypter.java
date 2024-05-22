@@ -10,15 +10,15 @@ import java.util.Base64;
 
 
 public class Encrypter {
-	private static byte[] KEY;
+	private byte[] KEY;
 
     // Method to read key from file
-    private static void readKeyFromFile(String filePath) throws Exception {
+    private void readKeyFromFile(String filePath) throws Exception {
         KEY = Files.readAllBytes(Paths.get(filePath));
     }
 
     // Method to encrypt a string
-    public static String encrypt(String data) throws Exception {
+    public String encrypt(String data) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKeySpec secretKeySpec = new SecretKeySpec(KEY, "AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
@@ -27,7 +27,7 @@ public class Encrypter {
     }
 
     // Method to decrypt a string
-    public static String decrypt(String encryptedData) throws Exception {
+    public String decrypt(String encryptedData) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKeySpec secretKeySpec = new SecretKeySpec(KEY, "AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
