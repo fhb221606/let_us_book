@@ -74,3 +74,31 @@ Mai 17, 2024 1:58:45 PM let_us_book.Tools.Log info
 INFORMATION: Setup of window was successful
 
 INFORMATION: Setup of window was successful
+Mai 22, 2024 1:34:08 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 1:34:10 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 22, 2024 1:35:13 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 1:35:15 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 22, 2024 1:35:26 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 1:35:28 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 22, 2024 1:36:24 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 1:36:26 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 22, 2024 2:39:01 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 2:39:02 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 22, 2024 2:39:40 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 2:39:42 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful
+Mai 22, 2024 2:40:32 PM let_us_book.Tools.Log info
+INFORMATION: Start Application
+Mai 22, 2024 2:40:33 PM let_us_book.Tools.Log info
+INFORMATION: Setup of window was successful

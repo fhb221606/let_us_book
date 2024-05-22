@@ -22,9 +22,13 @@ import javax.swing.table.DefaultTableModel;
 
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_summary_panel;
+import let_us_book.Tools.Encrypter;
 import let_us_book.Tools.Log;
+import let_us_book.Tools.Parser;
 import let_us_book.Transactional.transactional_list_panel;
 import let_us_book.Transactional.transactional_summary_panel;
+import let_us_book.Usermanagement.login_window;
+import let_us_book.Usermanagement.user_list_panel;
 
 import java.awt.Component;
 import java.awt.Color;
@@ -52,11 +56,43 @@ public class start_window extends JFrame {
 		
 		logger.info("Start Application");
 		
+		
+		/*
+		//Use this to create your account
+		
+		Parser p = new Parser();
+		Encrypter e = new Encrypter();
+		
+		String username = "benni";
+		String email = "test@website.com";
+		String password = "test";
+		
+		try {
+			password = e.encrypt(password);
+		} catch (Exception ex) {
+			System.err.println(e);
+		}
+		
+		p.insertDataIntoDB("INSERT INTO Employee\r\n"
+				+ "VALUES ('" + username + "', '" + email + "', '" + password + "', 'Senior User');");
+		*/
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					start_window frame = new start_window();
-					frame.setVisible(true);
+					frame.setVisible(false);
+					
+					login_window login = new login_window(frame);
+					
+					if (!login.isVisible()) {
+						if (login.getClosed()) {
+							System.exit(0);
+						}
+						frame.setVisible(true);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,8 +115,11 @@ public class start_window extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//-------------------------------------------------
+		//MENU
+		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 150, 25);
+		menuBar.setBounds(0, 0, 300, 25);
 		contentPane.add(menuBar);
 		
 		JMenu masterMenu = new JMenu("Master");
@@ -100,6 +139,16 @@ public class start_window extends JFrame {
 		
 		JMenuItem transactionalListMenuItem = new JMenuItem("Transactional List");
 		transactionalMenu.add(transactionalListMenuItem);
+		
+		JMenu usermanagementMenu = new JMenu("Usermanagement");
+		menuBar.add(usermanagementMenu);
+		
+		JMenuItem usermanagementMenuItem = new JMenuItem("User List");
+		usermanagementMenu.add(usermanagementMenuItem);
+		
+		//-------------------------------------------------
+		
+		//PANEL
 		
 		JPanel contentPanel = new JPanel(cardLayout);
 		contentPanel.setBounds(10, 33, 928, 582);
@@ -121,7 +170,13 @@ public class start_window extends JFrame {
 		transactionalListPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(transactionalListPanel, "Transactional List");
 		
+		JPanel userListPanel = new user_list_panel();
+		userListPanel.setBounds(10, 33, 928, 519);
+		contentPanel.add(userListPanel, "User List");
 		
+		//-------------------------------------------------
+		
+		//ACTIONS
 		
 		masterSummaryMenuItem.addActionListener(new ActionListener() {
             @Override
@@ -150,6 +205,15 @@ public class start_window extends JFrame {
                 cardLayout.show(contentPanel, "Transactional List");
             }
         });
+        
+        usermanagementMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, "User List");
+            }
+        });
+        
+        //-------------------------------------------------
 		
 		
         cardLayout.show(contentPanel, "Master Summary");
