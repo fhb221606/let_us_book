@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_summary_panel;
 import let_us_book.Tools.Log;
+import let_us_book.Transactional.transactional_list_panel;
+import let_us_book.Transactional.transactional_summary_panel;
 
 import java.awt.Component;
 import java.awt.Color;
@@ -78,7 +80,7 @@ public class start_window extends JFrame {
 		contentPane.setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 101, 22);
+		menuBar.setBounds(0, 0, 150, 25);
 		contentPane.add(menuBar);
 		
 		JMenu masterMenu = new JMenu("Master");
@@ -89,6 +91,15 @@ public class start_window extends JFrame {
 		
 		JMenuItem masterListMenuItem = new JMenuItem("Master List");
 		masterMenu.add(masterListMenuItem);
+		
+		JMenu transactionalMenu = new JMenu("Transactional");
+		menuBar.add(transactionalMenu);
+		
+		JMenuItem transactionalSummaryMenuItem = new JMenuItem("Transactional Summary");
+		transactionalMenu.add(transactionalSummaryMenuItem);
+		
+		JMenuItem transactionalListMenuItem = new JMenuItem("Transactional List");
+		transactionalMenu.add(transactionalListMenuItem);
 		
 		JPanel contentPanel = new JPanel(cardLayout);
 		contentPanel.setBounds(10, 33, 928, 582);
@@ -101,6 +112,14 @@ public class start_window extends JFrame {
 		JPanel masterListPanel = new master_list_panel();
 		masterListPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(masterListPanel, "Master List");
+		
+		JPanel transactionalSummaryPanel = new transactional_summary_panel();
+		transactionalSummaryPanel.setBounds(10, 33, 928, 519);
+		contentPanel.add(transactionalSummaryPanel, "Transactional Summary");
+		
+		JPanel transactionalListPanel = new transactional_list_panel();
+		transactionalListPanel.setBounds(10, 33, 928, 519);
+		contentPanel.add(transactionalListPanel, "Transactional List");
 		
 		
 		
@@ -115,6 +134,20 @@ public class start_window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(contentPanel, "Master List");
+            }
+        });
+        
+        transactionalSummaryMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, "Transactional Summary");
+            }
+        });
+
+        transactionalListMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, "Transactional List");
             }
         });
 		
