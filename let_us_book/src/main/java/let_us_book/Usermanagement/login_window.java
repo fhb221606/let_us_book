@@ -9,13 +9,15 @@ import let_us_book.Tools.Encrypter;
 import let_us_book.Tools.Parser;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class login_window extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String permission = "none";
-
+	private boolean closed = false;
 	
 	/**
 	 * Create the frame.
@@ -70,7 +72,22 @@ public class login_window extends JDialog {
         logoLabel.setFont(new Font("Palatino Linotype", Font.BOLD, 24));
         logoLabel.setBounds(131, 11, 177, 42);
         panel.add(logoLabel);
+        
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		closed = true;
+        		dispose();
+        	}
+        });
+        closeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        closeButton.setBounds(134, 164, 113, 47);
+        panel.add(closeButton);
         setVisible(true);
+	}
+	
+	public boolean getClosed() {
+		return closed;
 	}
 	
 	// Authentication Process
@@ -85,7 +102,7 @@ public class login_window extends JDialog {
 		// get the user data from DB
 		try {
 			Parser p = new Parser();
-			result = p.getDataFromDB("SELECT Name, Password, Permission FROM Employee WHERE Name = '" + username + "'");
+			result = p.getDataFromDB("SELECT Name, Password, Role FROM Employee WHERE Name = '" + username + "'");
 			survived_try_1 = true;
 		} catch (Exception e) {
 			System.err.println("Something went wrong when getting user data");
