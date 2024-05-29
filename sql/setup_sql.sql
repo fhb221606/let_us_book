@@ -8,8 +8,9 @@ DROP TABLE IF EXISTS Employee;
 CREATE TABLE Employee (
     MID INT PRIMARY KEY IDENTITY(1,1), 
     Name VARCHAR(64),               
-    Email VARCHAR(64) UNIQUE,
-    Passwort VARCHAR(64)           
+    Email VARCHAR(64),
+    Password VARCHAR(64),
+	Role VARCHAR(64)
 );
 
 CREATE TABLE Hotel (
@@ -30,19 +31,6 @@ CREATE TABLE Transactional (
 	CONSTRAINT fk_Hotel_HID FOREIGN KEY (HID) REFERENCES Hotel(HID)
 );
 
-INSERT INTO Employee(Name, Email, Passwort) VALUES
-('John Doe', 'john.doe@example.com', 'hashed_password_1'),
-('Jane Smith', 'jane.smith@example.com', 'hashed_password_2'),
-('Alice Johnson', 'alice.johnson@example.com', 'hashed_password_3'),
-('Bob Brown', 'bob.brown@example.com', 'hashed_password_4'),
-('Charlie Davis', 'charlie.davis@example.com', 'hashed_password_5'),
-('Diana Evans', 'diana.evans@example.com', 'hashed_password_6'),
-('Frank White', 'frank.white@example.com', 'hashed_password_7'),
-('Gina Harris', 'gina.harris@example.com', 'hashed_password_8'),
-('Henry Martin', 'henry.martin@example.com', 'hashed_password_9'),
-('Ivy Wilson', 'ivy.wilson@example.com', 'hashed_password_10');
-
-
 INSERT INTO Hotel (Name, Category, Rooms, Beds, City, Street) VALUES
 ('Grand Plaza', '*****', 200, 400, 'New York', '123 Park Ave'),
 ('Sea View Resort', '****', 150, 300, 'Miami', '47 Ocean Drive'),
@@ -57,6 +45,9 @@ INSERT INTO Hotel (Name, Category, Rooms, Beds, City, Street) VALUES
 
 
 INSERT INTO Transactional (HID, Rooms_Occupied, Beds_Occupied) VALUES
+(1, 150, 300), -- Grand Plaza
+(1, 150, 300), -- Grand Plaza
+(1, 150, 300), -- Grand Plaza
 (1, 150, 300), -- Grand Plaza
 (2, 100, 200), -- Sea View Resort
 (3, 70, 140),  -- Mountain Lodge
@@ -99,3 +90,24 @@ FROM Hotel;
 
 SELECT * 
 FROM Transactional;
+
+SELECT t.TID, h.name
+FROM Transactional t
+JOIN Hotel h ON t.HID = h.HID;
+
+SELECT h.Category,
+    SUM(h.Rooms) AS Total_Rooms,
+    ROUND(CAST(SUM(t.Rooms_Occupied) AS FLOAT) / SUM(h.Rooms) * 100, 2) AS Percentage_Rooms_Occupied,
+    SUM(h.Beds) AS Total_Beds,
+    ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
+FROM Hotel h
+JOIN Transactional t ON h.HID = t.HID
+GROUP BY h.Category
+ORDER BY h.Category DESC; 
+
+SELECT SUM(h.Rooms) AS Total_Rooms,
+    ROUND(CAST(SUM(t.Rooms_Occupied) AS FLOAT) / SUM(h.Rooms) * 100, 2) AS Percentage_Rooms_Occupied,
+    SUM(h.Beds) AS Total_Beds,
+    ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
+FROM Hotel h
+JOIN Transactional t ON h.HID = t.HID;
