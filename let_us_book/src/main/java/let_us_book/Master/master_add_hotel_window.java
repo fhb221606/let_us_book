@@ -16,14 +16,16 @@ import let_us_book.Tools.Parser;
 
 public class master_add_hotel_window extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField textFieldName;
-	private JTextField textFieldCategory;
-	private JTextField textFieldRooms;
-	private JTextField textFieldBeds;
-	private JTextField textFieldCity;
-	private JTextField textFieldStreet;
+	public static final long serialVersionUID = 1L;
+	public JPanel contentPane;
+	public JTextField textFieldName;
+	public JTextField textFieldCategory;
+	public JTextField textFieldRooms;
+	public JTextField textFieldBeds;
+	public JTextField textFieldCity;
+	public JTextField textFieldStreet;
+	
+	public Parser p = new Parser();
 
 	/**
 	 * Launch the application.
@@ -45,8 +47,6 @@ public class master_add_hotel_window extends JFrame {
 	 * Create the frame.
 	 */
 	public master_add_hotel_window() {
-		
-		Parser p = new Parser();
 		
 		setTitle("Hotel Entry Window");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,15 +116,11 @@ public class master_add_hotel_window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				boolean check;
 				
 				if(!(textFieldName.getText().equals("") || textFieldCategory.getText().equals("") || textFieldRooms.getText().equals("") || 
 						textFieldBeds.getText().equals("") || textFieldCity.getText().equals("") || textFieldStreet.getText().equals("")))
 				{
 					
-					check = true;
-					
-					System.out.println("2" + check);
 					
 					String hotelname = textFieldName.getText();
 					String category = textFieldCategory.getText();

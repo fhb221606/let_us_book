@@ -75,7 +75,7 @@ public class master_list_panel extends JPanel {
         	public void actionPerformed(ActionEvent e) {
         		
         		
-        		//Implementation to open the class 
+        		//Implementation to open the class master_add_hotel_window
         		master_add_hotel_window masterAddHotelWindow = new master_add_hotel_window();
         		
         		masterAddHotelWindow.setVisible(true);
