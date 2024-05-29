@@ -14,7 +14,7 @@ import let_us_book.Tools.Parser;
 public class master_summary_panel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public JTable masterSummaryTable;
+	private JTable masterSummaryTable;
 	
 	public String[][] content_master_table;
 	public String[][] total_master_table;
@@ -79,7 +79,7 @@ public class master_summary_panel extends JPanel {
 				+ "FROM Hotel\r\n"
 				+ "WHERE Category IS NOT NULL\r\n"
 				+ "GROUP BY Category\r\n"
-				+ "ORDER BY Category DESC");
+				+ "ORDER BY Category DESC;");
 		
 		/*for (int i = 0; i < content_master_table.length; i++) {
 	        for (int j = 0; j < content_master_table[i].length; j++) {

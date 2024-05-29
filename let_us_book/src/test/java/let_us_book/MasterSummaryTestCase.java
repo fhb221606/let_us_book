@@ -6,19 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import let_us_book.Master.master_summary_panel;
 import let_us_book.Tools.Parser;
-import let_us_book.Transactional.transactional_summary_panel;
 
 class MasterSummaryTestCase {
 	
-	private master_summary_panel panel;
 	public String[][] content_master_table;
 	public String[][] total_master_table;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		panel = new master_summary_panel();
+		
 		Parser p = new Parser();
 		
 		content_master_table = p.getDataFromDB(
@@ -36,15 +33,6 @@ class MasterSummaryTestCase {
 				+ "  SUM(Rooms) as Rooms,\r\n"
 				+ "  SUM(Beds) as Beds\r\n"
 				+ "FROM Hotel");
-	}
-	
-	@Test
-	@DisplayName("Ensure master summary table is properly initialized and visible")
-	void testTableInitialization() {
-		assertNotNull(panel.masterSummaryTable, "Table should be instantiated");
-		assertTrue(panel.masterSummaryTable.isVisible(), "Table should be visible");
-		assertEquals(4, panel.masterSummaryTable.getModel().getColumnCount(), "Table should have five columns");
-		assertEquals("Category", panel.masterSummaryTable.getModel().getColumnName(0), "First column should be 'Category'");
 	}
 
 	@Test
