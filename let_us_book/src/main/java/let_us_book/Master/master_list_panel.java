@@ -8,6 +8,9 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import let_us_book.Tools.Parser;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,34 +34,14 @@ public class master_list_panel extends JPanel {
 
         // Initialize JTable with data and column names
         masterListTable = new JTable();
+       Parser p = new Parser();
+       String [][] array2d = p.getDataFromDB("SELECT HID,NAME,CATEGORY FROM HOTEL");
+       
         masterListTable.setModel(new DefaultTableModel(
-            new Object[][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-                // Add more rows as needed...
-            },
+        		array2d
+            ,
             new String[] {
-                "ID", "Name", "Category", "Details"
+                "ID", "Name", "Category"
             }
         ));
         masterListTable.setRowHeight(25);
