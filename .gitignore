@@ -3,7 +3,7 @@
 /let_us_book/logs/*.txt*
 /let_us_book/logs/*.txt
 let_us_book/logs/
-let_us_book/target/classes/let_us_book
+let_us_book/target/
 let_us_book/logs/*.txt*
 let_us_book/logs/*.txt
 *.txt
