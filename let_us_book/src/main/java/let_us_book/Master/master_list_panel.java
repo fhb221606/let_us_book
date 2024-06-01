@@ -24,6 +24,12 @@ public class master_list_panel extends JPanel {
 	private JTable masterListTable;
 	private JTextField textFieldHotelID;
 
+	
+	
+	public JTable getMasterListTable() {
+	    return masterListTable;
+	}
+	
 	/**
 	 * Create the panel.
 	 */
