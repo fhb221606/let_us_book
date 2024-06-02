@@ -106,7 +106,7 @@ public class master_list_panel extends JPanel {
             		int hotelId = Integer.valueOf(textFieldHotelID.getText());
             		
             		p.deleteDataFromDB("DELETE FROM let_us_book.Hotel WHERE HID = " + hotelId + ";");
-					JOptionPane.showMessageDialog(null, "Hotel wurde erfolgreich entfernt. Please refresh the page to load the changes in the view.");
+					JOptionPane.showMessageDialog(null, "Hotel was successfully removed. Please refresh the page to load the changes in the view.");
 				
 					
 					
