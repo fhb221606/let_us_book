@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import let_us_book.Master.master_list_panel;
+import let_us_book.Master.master_save_button;
 import let_us_book.Master.master_summary_panel;
 import let_us_book.Tools.Encrypter;
 import let_us_book.Tools.Log;
@@ -141,10 +142,24 @@ public class start_window extends JFrame {
 		transactionalMenu.add(transactionalListMenuItem);
 		
 		JMenu usermanagementMenu = new JMenu("Usermanagement");
-		menuBar.add(usermanagementMenu);
+		menuBar.add(usermanagementMenu);	
 		
 		JMenuItem usermanagementMenuItem = new JMenuItem("User List");
 		usermanagementMenu.add(usermanagementMenuItem);
+		
+		JMenu backupMenu = new JMenu("Backup");
+		menuBar.add(backupMenu);
+		
+		JMenuItem backupMenuItem = new JMenuItem("Save Backup");
+		backupMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				master_save_button btn= new master_save_button();
+				btn.backup();
+			}
+		});
+		backupMenu.add(backupMenuItem);
+		
+		
 		
 		//-------------------------------------------------
 		
