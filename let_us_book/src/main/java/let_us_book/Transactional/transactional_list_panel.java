@@ -2,6 +2,7 @@ package let_us_book.Transactional;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
@@ -14,6 +15,7 @@ import let_us_book.Tools.Parser;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class transactional_list_panel extends JPanel {
 
@@ -21,13 +23,15 @@ public class transactional_list_panel extends JPanel {
 	public JTable transactionalListTable;
 	
 	public String[][] transactionalList;
+	private JTable tableAllTransactionalData;
+	private JTextField textFieldEnterName;
 
 	/**
 	 * Create the panel.
 	 */
 	public transactional_list_panel() {
 		setLayout(null); // Use null layout for absolute positioning
-	    setBounds(20, 20, 900, 560); // Set bounds of the JPanel
+	    setBounds(20, 20, 900, 654); // Set bounds of the JPanel
 		
 		JLabel transactionalListLabel = new JLabel("Transactional List");
         transactionalListLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -62,9 +66,59 @@ public class transactional_list_panel extends JPanel {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
         scrollPane.setBorder(null);
-        scrollPane.setBounds(10, 40, 880, 509); 
+        scrollPane.setBounds(10, 40, 880, 351); 
         add(scrollPane); 
         scrollPane.setViewportView(transactionalListTable);
+        
+        tableAllTransactionalData = new JTable();
+        tableAllTransactionalData.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null, null, null, ""},
+        	},
+        	new String[] {
+        		"Name", "Rooms occuppied", "Beds Occupied", "Category", "Rooms", "Beds", "City", "Street"
+        	}
+        ));
+        tableAllTransactionalData.setBounds(10, 402, 880, 62);
+        add(tableAllTransactionalData);
+        
+        textFieldEnterName = new JTextField();
+        textFieldEnterName.setBounds(493, 497, 86, 20);
+        add(textFieldEnterName);
+        textFieldEnterName.setColumns(10);
+        
+        
+        
+        JButton btnShowAllTransactionalData = new JButton("Show this hotels transactional Data");
+        btnShowAllTransactionalData.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		if (textFieldEnterName.getText() != "") {
+
+        			
+            		String [][] array2d = p.getDataFromDB("SELECT h.Name, t.Rooms_Occupied, t.Beds_Occupied, h.Category, h.Rooms, h.Beds, h.City, h.Street\r\n"
+            				+ "        		FROM Transactional t\r\n"
+            				+ "        		JOIN Hotel h ON t.HID = h.HID\r\n"
+            				+ "				WHERE Name = '" + textFieldEnterName.getText() +"'");
+         	       
+            		tableAllTransactionalData.setModel(new DefaultTableModel(
+                    	array2d,
+                        new String[] {
+                        		"Name", "Rooms occuppied", "Beds Occupied", "Category", "Rooms", "Beds", "City", "Street"
+                        }
+                    ));
+            		
+				}
+        		
+        		if (textFieldEnterName.getText().equals("")) {
+
+    				JOptionPane.showMessageDialog(null, "Please enter a hotel name to show it's respective transactional data.");
+				} 
+					
+        	}
+        });
+        btnShowAllTransactionalData.setBounds(589, 496, 201, 23);
+        add(btnShowAllTransactionalData);
         
         /*
         
@@ -86,6 +140,7 @@ public class transactional_list_panel extends JPanel {
         btnAddHtlEntry.setBounds(742, 10, 148, 23);
         add(btnAddHtlEntry);*/
         
+        
+        
 	}
-
 }
