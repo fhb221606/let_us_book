@@ -135,7 +135,7 @@ public class master_add_hotel_window extends JFrame {
 					
 					p.insertDataIntoDB("INSERT INTO Hotel VALUES ('" + hotelname + "', '" + category +"', " + rooms +", " + beds +", '" + city +"', '"+ street +"');");
 					
-					JOptionPane.showMessageDialog(null, "Hotel wurde erfolgreich eingefügt.");
+					JOptionPane.showMessageDialog(null, "Hotel was successfully added.");
 					
 				}
 				else 

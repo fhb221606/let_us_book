@@ -67,4 +67,13 @@ public class Parser {
             e.printStackTrace();
         }
 	}
+	
+	public static void deleteDataFromDB(String command) {
+		try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+	        // Execute the provided INSERT command
+	        stmt.execute(command);
+	     } catch (Exception e) {
+	    	 e.printStackTrace();
+	     }
+	}
 }
