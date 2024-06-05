@@ -21,7 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import let_us_book.Master.help_panel;
-
+import let_us_book.Master.master_help_button;
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_save_button;
 import let_us_book.Master.master_summary_panel;

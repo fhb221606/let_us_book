@@ -19,7 +19,7 @@ public class help_panel extends JPanel {
 		
 		JLabel helpLabel = new JLabel("Help");
 		helpLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		helpLabel.setBounds(301, 98, 327, 40);
+		helpLabel.setBounds(282, 34, 327, 40);
 		helpLabel.setForeground(Color.BLACK);
 		helpLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		helpLabel.setBackground(new Color(213, 0, 0));
@@ -36,7 +36,7 @@ public class help_panel extends JPanel {
                 + "Help: See the explanation of this Application.<br><br><br>"
                 + "For further help, please contact support@let-us-book.at."
                 + "</body></html>");
-		textLabel.setLocation(202, 97);
+		textLabel.setLocation(179, 85);
 		textLabel.setSize(539, 357);
         textLabel.setFont(new Font("Arial", Font.PLAIN, 14)); // Set font for the plain text
         textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
