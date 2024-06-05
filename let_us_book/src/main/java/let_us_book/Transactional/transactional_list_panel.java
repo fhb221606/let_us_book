@@ -23,8 +23,8 @@ public class transactional_list_panel extends JPanel {
 	public JTable transactionalListTable;
 	
 	public String[][] transactionalList;
-	private JTable tableAllTransactionalData;
-	private JTextField textFieldEnterName;
+	public JTable tableAllTransactionalData;
+	public JTextField textFieldEnterName;
 
 	/**
 	 * Create the panel.
@@ -79,8 +79,12 @@ public class transactional_list_panel extends JPanel {
         		"Name", "Rooms occuppied", "Beds Occupied", "Category", "Rooms", "Beds", "City", "Street"
         	}
         ));
-        tableAllTransactionalData.setBounds(10, 402, 880, 62);
-        add(tableAllTransactionalData);
+        JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane2.setBounds(10, 426, 880, 60);
+        scrollPane2.setBorder(null);
+        add(scrollPane2); 
+        scrollPane2.setViewportView(tableAllTransactionalData);
+        
         
         textFieldEnterName = new JTextField();
         textFieldEnterName.setBounds(493, 497, 86, 20);
@@ -112,13 +116,14 @@ public class transactional_list_panel extends JPanel {
         		
         		if (textFieldEnterName.getText().equals("")) {
 
-    				JOptionPane.showMessageDialog(null, "Please enter a hotel name to show it's respective transactional data.");
+    				JOptionPane.showMessageDialog(null, "Please enter a hotel name to show it's respective transactional and master data combined.");
 				} 
 					
         	}
         });
         btnShowAllTransactionalData.setBounds(589, 496, 201, 23);
         add(btnShowAllTransactionalData);
+        
         
         /*
         
