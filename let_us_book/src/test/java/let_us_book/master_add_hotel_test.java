@@ -42,6 +42,8 @@ class master_add_hotel_test {
 
         Mockito.verify(mockParser).insertDataIntoDB(
                 "INSERT INTO Hotel VALUES ('Test Hotel', '*****', 100, 200, 'Test City', 'Test Street');"
+        		
+        
         );
     }
 
