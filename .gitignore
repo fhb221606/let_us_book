@@ -8,3 +8,5 @@ let_us_book/logs/*.txt*
 let_us_book/logs/*.txt
 *.txt
 let_us_book/target/
+let_us_book/master.pdf
+let_us_book/transactional.pdf
