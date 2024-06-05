@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import let_us_book.Tools.Parser;
+import let_us_book.Usermanagement.login_window;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -149,6 +150,10 @@ public class master_list_panel extends JPanel {
         	public void actionPerformed(ActionEvent e) {
         		
         		
+        		if(login_window.permission.equals("Senior User")){
+        			
+        		
+        		
         		if(!textFieldHotelID.equals(""))
         		{
             		int hotelId = Integer.valueOf(textFieldHotelID.getText());
@@ -162,7 +167,11 @@ public class master_list_panel extends JPanel {
 			else {
 					JOptionPane.showMessageDialog(null, "The selected hotel does not exist, please choose one that is available in the list view.");
         		}
-        		
+        		}
+        		else
+        		{
+        			JOptionPane.showMessageDialog(null, "You do not have the permission to delete hotels.");
+        		}
         		
         	}
         });

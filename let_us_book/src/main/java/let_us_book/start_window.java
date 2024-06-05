@@ -48,6 +48,7 @@ public class start_window extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CardLayout cardLayout = new CardLayout(0, 0);
+	private static String permission;
 	
 	protected static Log logger = new Log("start_window.txt");
 
@@ -94,6 +95,7 @@ public class start_window extends JFrame {
 							System.exit(0);
 						}
 						frame.setVisible(true);
+						permission = login.permission;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -190,7 +192,7 @@ public class start_window extends JFrame {
 		
 		JPanel helpPanel = new help_panel();
 		helpPanel.setBounds(10, 33, 928, 519);
-		contentPanel.add(helpPanel, "Help and FAQ");
+		contentPanel.add(helpPanel, "Help");
 		
 		
 		
