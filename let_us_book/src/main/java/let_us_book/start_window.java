@@ -20,8 +20,7 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import let_us_book.Master.help_panel;
-import let_us_book.Master.master_help_button;
+import let_us_book.Help.help_panel;
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_save_button;
 import let_us_book.Master.master_summary_panel;
@@ -158,7 +157,7 @@ public class start_window extends JFrame {
 		JMenu helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
 		
-		JMenuItem FAQMenuItem = new JMenuItem("Help and FAQ");
+		JMenuItem FAQMenuItem = new JMenuItem("Help");
 		helpMenu.add(FAQMenuItem);
 		
 		//-------------------------------------------------
