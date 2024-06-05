@@ -232,9 +232,25 @@ public class master_list_panel extends JPanel {
         btnApplyChangs.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
+        		int hotelId = Integer.valueOf(textFieldHotelID.getText());
         		
+        		String name = textHtlName.getText();
+                String category = textCategory.getText();
+                int beds = Integer.parseInt(textRooms.getText());
+                int rooms = Integer.parseInt(textBeds.getText());
+                String city = textLocation.getText();
+                String street = textStreet.getText();
+              
         		
-        		
+        		String updateQuery=("UPDATE Hotel SET Name = '"+ name+ "', Category ='"+ category + "', Rooms =" + rooms +", Beds =" + beds + ", City ='" + city +"', Street ='" + street +"'  WHERE HID =" +hotelId);        		
+        		 int rowAffected = p.updateDataIntoDB(updateQuery);
+        		 
+        		 if(rowAffected > 0) {
+        			 
+        			JOptionPane.showMessageDialog(null, "Hotel information updated successfully");
+        		 }else {
+        			 JOptionPane.showMessageDialog(null, "Failed to update hotel information");
+        		 }
         	}
         });
         btnApplyChangs.setBounds(753, 462, 137, 23);
