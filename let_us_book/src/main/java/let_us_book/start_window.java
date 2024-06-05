@@ -20,6 +20,8 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import let_us_book.Master.help_panel;
+import let_us_book.Master.master_help_button;
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_save_button;
 import let_us_book.Master.master_summary_panel;
@@ -120,7 +122,7 @@ public class start_window extends JFrame {
 		//MENU
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 300, 25);
+		menuBar.setBounds(0, 0, 348, 25);
 		contentPane.add(menuBar);
 		
 		JMenu masterMenu = new JMenu("Master");
@@ -151,15 +153,13 @@ public class start_window extends JFrame {
 		menuBar.add(backupMenu);
 		
 		JMenuItem backupMenuItem = new JMenuItem("Save Backup");
-		backupMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				master_save_button btn= new master_save_button();
-				btn.backup();
-			}
-		});
 		backupMenu.add(backupMenuItem);
 		
+		JMenu helpMenu = new JMenu("Help");
+		menuBar.add(helpMenu);
 		
+		JMenuItem FAQMenuItem = new JMenuItem("Help and FAQ");
+		helpMenu.add(FAQMenuItem);
 		
 		//-------------------------------------------------
 		
@@ -188,6 +188,13 @@ public class start_window extends JFrame {
 		JPanel userListPanel = new user_list_panel();
 		userListPanel.setBounds(10, 33, 928, 519);
 		contentPanel.add(userListPanel, "User List");
+		
+		JPanel helpPanel = new help_panel();
+		helpPanel.setBounds(10, 33, 928, 519);
+		contentPanel.add(helpPanel, "Help and FAQ");
+		
+		
+		
 		
 		//-------------------------------------------------
 		
@@ -228,6 +235,21 @@ public class start_window extends JFrame {
             }
         });
         
+        backupMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				master_save_button btn= new master_save_button();
+				btn.backup();
+			}
+		});
+        
+        FAQMenuItem.addActionListener(new ActionListener() {
+			@Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, "Help and FAQ");
+            }
+        });
+        
+      
         //-------------------------------------------------
 		
 		
