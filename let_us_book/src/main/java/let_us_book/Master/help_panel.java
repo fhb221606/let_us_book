@@ -19,7 +19,7 @@ public class help_panel extends JPanel {
 		
 		JLabel helpLabel = new JLabel("Help");
 		helpLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		helpLabel.setBounds(282, 34, 327, 40);
+		helpLabel.setBounds(271, 97, 327, 40);
 		helpLabel.setForeground(Color.BLACK);
 		helpLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		helpLabel.setBackground(new Color(213, 0, 0));
