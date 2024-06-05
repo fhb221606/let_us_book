@@ -7,8 +7,6 @@ SET DATEFORMAT ymd;
 
 
 
-
-
 CREATE TABLE Hotel (
 	HID INT PRIMARY KEY IDENTITY(1,1), 
     Name VARCHAR(255) NOT NULL,
@@ -79,6 +77,7 @@ SELECT
 FROM Hotel
 ) as Sub_Select;
 
+
 SELECT * 
 FROM Hotel;
 
@@ -106,4 +105,4 @@ SELECT SUM(h.Rooms) AS Total_Rooms,
     ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
 FROM Hotel h
 JOIN Transactional t ON h.HID = t.HID;
-*/
+
