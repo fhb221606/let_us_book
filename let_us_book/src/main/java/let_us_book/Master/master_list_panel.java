@@ -32,6 +32,8 @@ public class master_list_panel extends JPanel {
 	private JTextField textRooms;
 	private JButton btnApplyChangs;
 	private JTextField textStreet;
+	public Object btnDlteEntry;
+	
 
 	
 	
@@ -60,7 +62,7 @@ public class master_list_panel extends JPanel {
         	public void actionPerformed(ActionEvent e) {
         		
 
-        		int hotelId = Integer.valueOf(textFieldHotelID.getText());
+        		int hotelId = Integer.valueOf(getTextFieldHotelID().getText());
         		
         		String [][] array2d = p.getDataFromDB("Select Name, Category, Rooms, Beds, City, Street FROM Hotel WHERE HID = " + hotelId);
      	       
@@ -154,9 +156,9 @@ public class master_list_panel extends JPanel {
         			
         		
         		
-        		if(!textFieldHotelID.equals(""))
+        		if(!getTextFieldHotelID().equals(""))
         		{
-            		int hotelId = Integer.valueOf(textFieldHotelID.getText());
+            		int hotelId = Integer.valueOf(getTextFieldHotelID().getText());
             		
             		p.deleteDataFromDB("DELETE FROM let_us_book.Hotel WHERE HID = " + hotelId + ";");
 					JOptionPane.showMessageDialog(null, "Hotel was successfully removed. Please refresh the page to load the changes in the view.");
@@ -179,10 +181,10 @@ public class master_list_panel extends JPanel {
         
         
         
-        textFieldHotelID = new JTextField();
-        textFieldHotelID.setBounds(570, 11, 45, 20);
-        add(textFieldHotelID);
-        textFieldHotelID.setColumns(10);
+        setTextFieldHotelID(new JTextField());
+        getTextFieldHotelID().setBounds(570, 11, 45, 20);
+        add(getTextFieldHotelID());
+        getTextFieldHotelID().setColumns(10);
         
         JLabel lblHotelID = new JLabel("Hotel ID");
         lblHotelID.setBounds(514, 14, 46, 14);
@@ -254,5 +256,18 @@ public class master_list_panel extends JPanel {
         textStreet.setBounds(765, 431, 125, 20);
         add(textStreet);
         
+	}
+
+	protected Parser getParser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public JTextField getTextFieldHotelID() {
+		return textFieldHotelID;
+	}
+
+	public void setTextFieldHotelID(JTextField textFieldHotelID) {
+		this.textFieldHotelID = textFieldHotelID;
 	}
 }
