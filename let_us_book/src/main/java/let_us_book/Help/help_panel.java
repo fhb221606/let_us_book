@@ -1,4 +1,4 @@
-package let_us_book.Master;
+package let_us_book.Help;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,9 +19,9 @@ public class help_panel extends JPanel {
 		
 		JLabel helpLabel = new JLabel("Help");
 		helpLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		helpLabel.setBounds(271, 97, 327, 40);
+		helpLabel.setBounds(286, 80, 327, 40);
 		helpLabel.setForeground(Color.BLACK);
-		helpLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		helpLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
 		helpLabel.setBackground(new Color(213, 0, 0));
 		add(helpLabel);
 		
@@ -36,7 +36,7 @@ public class help_panel extends JPanel {
                 + "Help: See the explanation of this Application.<br><br><br>"
                 + "For further help, please contact support@let-us-book.at."
                 + "</body></html>");
-		textLabel.setLocation(179, 85);
+		textLabel.setLocation(180, 101);
 		textLabel.setSize(539, 357);
         textLabel.setFont(new Font("Arial", Font.PLAIN, 14)); // Set font for the plain text
         textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
