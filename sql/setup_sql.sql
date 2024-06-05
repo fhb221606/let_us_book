@@ -2,16 +2,6 @@ use [SWP_2024_let_us_book ];
 
 DROP TABLE IF EXISTS Transactional;
 DROP TABLE IF EXISTS Hotel;
-DROP TABLE IF EXISTS Employee;
-
-
-CREATE TABLE Employee (
-    MID INT PRIMARY KEY IDENTITY(1,1), 
-    Name VARCHAR(64),               
-    Email VARCHAR(64),
-    Password VARCHAR(64),
-	Role VARCHAR(64)
-);
 
 CREATE TABLE Hotel (
 	HID INT PRIMARY KEY IDENTITY(1,1), 
@@ -83,9 +73,6 @@ FROM Hotel
 
 
 SELECT * 
-FROM Employee;
-
-SELECT * 
 FROM Hotel;
 
 SELECT * 
@@ -111,3 +98,5 @@ SELECT SUM(h.Rooms) AS Total_Rooms,
     ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied
 FROM Hotel h
 JOIN Transactional t ON h.HID = t.HID;
+
+
