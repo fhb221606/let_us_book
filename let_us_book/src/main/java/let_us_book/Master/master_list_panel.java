@@ -23,6 +23,14 @@ public class master_list_panel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable masterListTable;
 	private JTextField textFieldHotelID;
+	private JTable editTable;
+	private JTextField textHtlName;
+	private JTextField textLocation;
+	private JTextField textCategory;
+	private JTextField textBeds;
+	private JTextField textRooms;
+	private JButton btnApplyChangs;
+	private JTextField textStreet;
 
 	/**
 	 * Create the panel.
@@ -40,6 +48,28 @@ public class master_list_panel extends JPanel {
         Parser p = new Parser();
         
 
+        JButton btnEditHotel = new JButton("Show hotel to be changed");
+        btnEditHotel.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+
+        		int hotelId = Integer.valueOf(textFieldHotelID.getText());
+        		
+        		String [][] array2d = p.getDataFromDB("Select Name, Category, Rooms, Beds, City, Street FROM Hotel WHERE HID = " + hotelId);
+     	       
+        		editTable.setModel(new DefaultTableModel(
+                	array2d,
+                    new String[] {
+                        "Name", "Category", "Rooms", "Beds", "City", "Street"
+                    }
+                ));
+        		
+
+				JOptionPane.showMessageDialog(null, "Edit view was updated, edit is now ready to .");
+        		
+        		
+        	}
+        });
         
         
         // Initialize JTable with data and column names
@@ -57,7 +87,9 @@ public class master_list_panel extends JPanel {
         masterListTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
         
 
- 
+        btnEditHotel.setBounds(753, 496, 137, 23);
+        add(btnEditHotel);
+
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(10, 40, 880, 312);
         scrollPane.setBorder(null);
@@ -68,6 +100,22 @@ public class master_list_panel extends JPanel {
         
         
         
+        
+        editTable = new JTable();
+        editTable.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null, null},
+        	},
+        	new String[] {
+        		"Name", "Category", "Rooms", "Beds", "City", "City"
+        	}
+        ));
+        
+        JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane2.setBounds(10, 363, 880, 60);
+        scrollPane2.setBorder(null);
+        add(scrollPane2); 
+        scrollPane2.setViewportView(editTable);
         
         
         
@@ -101,11 +149,9 @@ public class master_list_panel extends JPanel {
             		
             		p.deleteDataFromDB("DELETE FROM let_us_book.Hotel WHERE HID = " + hotelId + ";");
 					JOptionPane.showMessageDialog(null, "Hotel wurde erfolgreich entfernt. Please refresh the page to load the changes in the view.");
-				
-					
 					
         		}
-        		else {
+			else {
 					JOptionPane.showMessageDialog(null, "The selected hotel does not exist, please choose one that is available in the list view.");
         		}
         		
@@ -149,7 +195,47 @@ public class master_list_panel extends JPanel {
         
         
         
-     
+        textHtlName = new JTextField();
+        textHtlName.setBounds(10, 431, 125, 20);
+        add(textHtlName);
+        textHtlName.setColumns(10);
+        
+        textLocation = new JTextField();
+        textLocation.setColumns(10);
+        textLocation.setBounds(618, 431, 125, 20);
+        add(textLocation);
+        
+        textCategory = new JTextField();
+        textCategory.setColumns(10);
+        textCategory.setBounds(162, 431, 125, 20);
+        add(textCategory);
+        
+        textBeds = new JTextField();
+        textBeds.setColumns(10);
+        textBeds.setBounds(309, 431, 125, 20);
+        add(textBeds);
+        
+        textRooms = new JTextField();
+        textRooms.setColumns(10);
+        textRooms.setBounds(458, 431, 125, 20);
+        add(textRooms);
+        
+        btnApplyChangs = new JButton("Apply changes");
+        btnApplyChangs.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		
+        		
+        		
+        	}
+        });
+        btnApplyChangs.setBounds(753, 462, 137, 23);
+        add(btnApplyChangs);
+        
+        textStreet = new JTextField();
+        textStreet.setColumns(10);
+        textStreet.setBounds(765, 431, 125, 20);
+        add(textStreet);
         
 	}
 }
