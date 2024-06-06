@@ -246,7 +246,7 @@ public class start_window extends JFrame {
         FAQMenuItem.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPanel, "Help and FAQ");
+                cardLayout.show(contentPanel, "Help");
             }
         });
         
