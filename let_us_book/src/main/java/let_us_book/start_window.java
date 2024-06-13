@@ -27,6 +27,7 @@ import let_us_book.Master.master_summary_panel;
 import let_us_book.Tools.Encrypter;
 import let_us_book.Tools.Log;
 import let_us_book.Tools.Parser;
+import let_us_book.Tools.PDF_Exporter;
 import let_us_book.Transactional.transactional_list_panel;
 import let_us_book.Transactional.transactional_summary_panel;
 import let_us_book.Usermanagement.login_window;
@@ -48,6 +49,7 @@ public class start_window extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CardLayout cardLayout = new CardLayout(0, 0);
+	private static String permission;
 	
 	protected static Log logger = new Log("start_window.txt");
 
@@ -94,6 +96,7 @@ public class start_window extends JFrame {
 							System.exit(0);
 						}
 						frame.setVisible(true);
+						permission = login.permission;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -101,6 +104,19 @@ public class start_window extends JFrame {
 			}
 		});
 	}
+	
+	public String[][] combineByRows(String[][] first, String[][] second) {
+        String[][] result = new String[first.length + second.length][];
+
+        for (int i = 0; i < first.length; i++) {
+            result[i] = first[i];
+        }
+        for (int i = 0; i < second.length; i++) {
+            result[first.length + i] = second[i];
+        }
+
+        return result;
+    }
 	
 
 	/**
@@ -121,7 +137,7 @@ public class start_window extends JFrame {
 		//MENU
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 348, 25);
+		menuBar.setBounds(0, 0, 404, 25);
 		contentPane.add(menuBar);
 		
 		JMenu masterMenu = new JMenu("Master");
@@ -156,6 +172,68 @@ public class start_window extends JFrame {
 		
 		JMenu helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
+		JMenu exportMenu = new JMenu("Export");
+		menuBar.add(exportMenu);
+		
+		JMenuItem exportMenuItem = new JMenuItem("Export as pdf");
+		exportMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Parser p = new Parser();
+				
+				String[][] master_data = p.getDataFromDB(
+						"SELECT \r\n"
+								+ "  Category,\r\n"
+								+ "  COUNT(*) AS Establishments,\r\n"
+								+ "  SUM(Rooms) as Rooms,\r\n"
+								+ "  SUM(Beds) as Beds\r\n"
+								+ "FROM Hotel\r\n"
+								+ "WHERE Category IS NOT NULL\r\n"
+								+ "GROUP BY Category\r\n"
+								+ "ORDER BY Category DESC");
+				
+				String[][] master_total = p.getDataFromDB("SELECT \r\n"
+						+ "  COUNT(*) AS Total_Hotels,\r\n"
+						+ "  SUM(Rooms) as Rooms,\r\n"
+						+ "  SUM(Beds) as Beds\r\n"
+						+ "FROM Hotel");
+				
+				String[][] transactional_data = p.getDataFromDB(
+						"SELECT h.Category,\r\n"
+						+ "    SUM(h.Rooms) AS Total_Rooms,\r\n"
+						+ "    ROUND(CAST(SUM(t.Rooms_Occupied) AS FLOAT) / SUM(h.Rooms) * 100, 2) AS Percentage_Rooms_Occupied,\r\n"
+						+ "    SUM(h.Beds) AS Total_Beds,\r\n"
+						+ "    ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied\r\n"
+						+ "FROM Hotel h\r\n"
+						+ "JOIN Transactional t ON h.HID = t.HID\r\n"
+						+ "GROUP BY h.Category\r\n"
+						+ "ORDER BY h.Category DESC ");
+				
+				
+				String[][] transactional_total = p.getDataFromDB(
+						"SELECT SUM(h.Rooms) AS Total_Rooms,\r\n"
+						+ "    ROUND(CAST(SUM(t.Rooms_Occupied) AS FLOAT) / SUM(h.Rooms) * 100, 2) AS Percentage_Rooms_Occupied,\r\n"
+						+ "    SUM(h.Beds) AS Total_Beds,\r\n"
+						+ "    ROUND(CAST(SUM(t.Beds_Occupied) AS FLOAT) / SUM(h.Beds) * 100, 2) AS Percentage_Beds_Occupied\r\n"
+						+ "FROM Hotel h\r\n"
+						+ "JOIN Transactional t ON h.HID = t.HID");
+				
+				String[][] master_header = {{"Category", "Hotels", "Rooms", "Beds"}};
+				
+				String[][] master1 = combineByRows(master_header, master_data);
+				String[][] master2 = combineByRows(master1, master_total);
+				
+				String[][] transactional_header = {{"Category", "Rooms", "Rooms Occupancy", "Beds", "Beds Occupancy"}};
+				
+				String[][] transactional1 = combineByRows(transactional_header, transactional_data);
+				String[][] transactional2 = combineByRows(transactional1, transactional_total);
+				
+				PDF_Exporter.writeToPdf("master.pdf", "Master Summary", master2);
+				PDF_Exporter.writeToPdf("transactional.pdf", "Transactional Summary", transactional2);
+				
+			}
+		});
+		exportMenu.add(exportMenuItem);
 		
 		JMenuItem FAQMenuItem = new JMenuItem("Help");
 		helpMenu.add(FAQMenuItem);
@@ -190,7 +268,7 @@ public class start_window extends JFrame {
 		
 		JPanel helpPanel = new help_panel();
 		helpPanel.setBounds(10, 33, 928, 519);
-		contentPanel.add(helpPanel, "Help and FAQ");
+		contentPanel.add(helpPanel, "Help");
 		
 		
 		
@@ -244,7 +322,7 @@ public class start_window extends JFrame {
         FAQMenuItem.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPanel, "Help and FAQ");
+                cardLayout.show(contentPanel, "Help");
             }
         });
         
