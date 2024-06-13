@@ -16,7 +16,7 @@ public class login_window extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private String permission = "none";
+	public static String permission = "none";
 	private boolean closed = false;
 	
 	/**
@@ -59,6 +59,11 @@ public class login_window extends JDialog {
             String password = new String(passwordField.getPassword());
             if (authenticate(username, password)) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
+                
+                Parser p = new Parser();
+                String [][] permission2d = p.getDataFromDB("SELECT * FROM Employee WHERE Name ='"+username+"'");
+                permission = permission2d[0][4];
+                
                 dispose(); // Close the dialog
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
