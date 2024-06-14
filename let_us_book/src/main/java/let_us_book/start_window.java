@@ -228,8 +228,8 @@ public class start_window extends JFrame {
 				String[][] transactional1 = combineByRows(transactional_header, transactional_data);
 				String[][] transactional2 = combineByRows(transactional1, transactional_total);
 				
-				PDF_Exporter.writeToPdf("master.pdf", "Master Summary", master2);
-				PDF_Exporter.writeToPdf("transactional.pdf", "Transactional Summary", transactional2);
+				PDF_Exporter.writeToPdf("export/master.pdf", "Master Summary", master2);
+				PDF_Exporter.writeToPdf("export/transactional.pdf", "Transactional Summary", transactional2);
 				
 			}
 		});

@@ -11,6 +11,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -18,6 +19,14 @@ public class PDF_Exporter {
 	
 	public static void writeToPdf(String file, String heading, String[][] data) {
         try {
+        	String exportDirectory = "export";
+
+            //check if the directory exists, if not, create it
+            File directory = new File(exportDirectory);
+            if (!directory.exists()) {
+                directory.mkdir();  // Create the directory if it doesn't exist
+            }
+        	
             // Initialize PDF document
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file));

@@ -10,3 +10,9 @@ let_us_book/logs/*.txt
 let_us_book/target/
 let_us_book/master.pdf
 let_us_book/transactional.pdf
+/let_us_book/backup
+let_us_book/.classpath
+let_us_book/.project
+/let_us_book/.settings
+let_us_book/test_output.pdf
+/let_us_book/backup
