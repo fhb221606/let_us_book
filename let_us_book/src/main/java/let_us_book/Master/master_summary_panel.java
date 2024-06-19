@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import let_us_book.Tools.Parser;
 
 public class master_summary_panel extends JPanel {
@@ -25,6 +27,8 @@ public class master_summary_panel extends JPanel {
 	
 	
 	public master_summary_panel() {
+		
+		
 		setLayout(null); // Use null layout for absolute positioning
 	    setBounds(20, 20, 900, 560); // Set bounds of the JPanel
 		

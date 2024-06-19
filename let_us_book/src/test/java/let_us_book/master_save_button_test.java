@@ -12,15 +12,15 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import let_us_book.Master.master_save_button;
 import let_us_book.Tools.Parser;
+import let_us_book.Tools.Export_CSV;
 
 class master_save_button_test {
 
 	   @Mock
 	    private Parser parserMock;
 
-	    private master_save_button masterSaveButton;
+	    private Export_CSV masterSaveButton;
 
 	    @TempDir
 	    File tempDir;
@@ -28,14 +28,11 @@ class master_save_button_test {
 	    @BeforeEach
 	    public void setUp() {
 	        MockitoAnnotations.openMocks(this);
-	        masterSaveButton = new master_save_button();
+	        masterSaveButton = new Export_CSV();
 	        masterSaveButton.p = parserMock;
 	    }
 
 	    
-	        
-	    
-
 	    @Test
 	    public void testWriteCSV() throws IOException {
 	        String[][] data = { {"Column1", "Column2"}, {"Data1", "Data2"} };
