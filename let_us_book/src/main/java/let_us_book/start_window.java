@@ -20,6 +20,8 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import let_us_book.Help.help_panel;
 import let_us_book.Master.master_list_panel;
 import let_us_book.Master.master_save_button;
@@ -43,6 +45,8 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class start_window extends JFrame {
 
@@ -123,6 +127,8 @@ public class start_window extends JFrame {
 	 * Create the frame.
 	 */
 	public start_window() {
+		
+		FlatLightLaf.setup();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 955, 661);
@@ -316,6 +322,14 @@ public class start_window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				master_save_button btn= new master_save_button();
 				btn.backup();
+				try {
+					Desktop.getDesktop().open(new File("backup/master.csv"));
+					Desktop.getDesktop().open(new File("backup/transactional.csv"));
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
         
