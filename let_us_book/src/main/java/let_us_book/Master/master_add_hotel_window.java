@@ -1,9 +1,11 @@
 package let_us_book.Master;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import let_us_book.Tools.Parser;
+import javax.swing.JComboBox;
 
 public class master_add_hotel_window extends JFrame {
 
@@ -82,48 +85,56 @@ public class master_add_hotel_window extends JFrame {
 		contentPane.add(lblStreet);
 		
 		textFieldName = new JTextField();
-		textFieldName.setBounds(157, 61, 412, 20);
+		textFieldName.setBounds(157, 61, 205, 20);
 		contentPane.add(textFieldName);
 		textFieldName.setColumns(10);
 		
+		/*
 		textFieldCategory = new JTextField();
 		textFieldCategory.setColumns(10);
 		textFieldCategory.setBounds(157, 112, 412, 20);
 		contentPane.add(textFieldCategory);
+		*/
 		
 		textFieldRooms = new JTextField();
 		textFieldRooms.setColumns(10);
-		textFieldRooms.setBounds(157, 165, 412, 20);
+		textFieldRooms.setBounds(157, 165, 98, 20);
 		contentPane.add(textFieldRooms);
 		
 		textFieldBeds = new JTextField();
 		textFieldBeds.setColumns(10);
-		textFieldBeds.setBounds(157, 223, 412, 20);
+		textFieldBeds.setBounds(157, 223, 98, 20);
 		contentPane.add(textFieldBeds);
 		
 		textFieldCity = new JTextField();
 		textFieldCity.setColumns(10);
-		textFieldCity.setBounds(157, 281, 412, 20);
+		textFieldCity.setBounds(157, 281, 205, 20);
 		contentPane.add(textFieldCity);
 		
 		textFieldStreet = new JTextField();
 		textFieldStreet.setColumns(10);
-		textFieldStreet.setBounds(157, 337, 412, 20);
+		textFieldStreet.setBounds(157, 337, 205, 20);
 		contentPane.add(textFieldStreet);
+		
+
+		JComboBox<String> comboBoxCategory = new JComboBox();
+		comboBoxCategory.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		comboBoxCategory.setEditable(true);
+		comboBoxCategory.setModel(new DefaultComboBoxModel(new String[] {"*", "**", "***", "****", "*****"}));
+		comboBoxCategory.setSelectedIndex(0);
+		comboBoxCategory.setBounds(157, 109, 98, 22);
+        getContentPane().add(comboBoxCategory);
 		
 		JButton btnAddEntry = new JButton("Add entry to database");
 		btnAddEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
-				if(!(textFieldName.getText().equals("") || textFieldCategory.getText().equals("") || textFieldRooms.getText().equals("") || 
+				if(!(textFieldName.getText().equals("") || textFieldRooms.getText().equals("") || 
 						textFieldBeds.getText().equals("") || textFieldCity.getText().equals("") || textFieldStreet.getText().equals("")))
 				{
-					
-					
+
 					String hotelname = textFieldName.getText();
-					String category = textFieldCategory.getText();
+					//String category = textFieldCategory.getText();
 					int rooms = Integer.valueOf(textFieldRooms.getText());
 					int beds = Integer.valueOf(textFieldBeds.getText());
 					//String rooms = textFieldRooms.getText();
@@ -133,7 +144,7 @@ public class master_add_hotel_window extends JFrame {
 					
 
 					
-					p.insertDataIntoDB("INSERT INTO Hotel VALUES ('" + hotelname + "', '" + category +"', " + rooms +", " + beds +", '" + city +"', '"+ street +"');");
+					p.insertDataIntoDB("INSERT INTO Hotel VALUES ('" + hotelname + "', '" + comboBoxCategory.getSelectedItem() +"', " + rooms +", " + beds +", '" + city +"', '"+ street +"');");
 					
 					JOptionPane.showMessageDialog(null, "Hotel was successfully added.");
 					
@@ -146,8 +157,9 @@ public class master_add_hotel_window extends JFrame {
 
 			}
 		});
-		btnAddEntry.setBounds(157, 398, 164, 32);
+		btnAddEntry.setBounds(405, 331, 164, 32);
 		contentPane.add(btnAddEntry);
+		
 		
 		JButton btnClearEntry = new JButton("Clear current entry");
 		btnClearEntry.addActionListener(new ActionListener() {
@@ -162,7 +174,14 @@ public class master_add_hotel_window extends JFrame {
 				
 			}
 		});
-		btnClearEntry.setBounds(405, 398, 164, 32);
+		btnClearEntry.setBounds(606, 331, 164, 32);
 		contentPane.add(btnClearEntry);
+		
+		/*
+		JComboBox<String> comboBoxCategory = new JComboBox();
+		comboBoxCategory.setBounds(606, 111, 30, 22);
+		contentPane.add(comboBoxCategory);
+		*/
+		
 	}
 }
